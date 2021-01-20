@@ -8,6 +8,4 @@ describe("App", () => {
   it("renders the component", () => {
     expect(wrapper.find(".app-container").exists()).toBe(true);
   });
-
-  
 });
