@@ -1,6 +1,7 @@
 import React from "react";
-import "./HotelList.style.scss";
 import ErrorDisplay from "../ErrorDisplay/ErrorDisplay";
+
+import "./HotelList.style.scss";
 
 const HotelList = (props) => {
   const hotels = props.hotels;

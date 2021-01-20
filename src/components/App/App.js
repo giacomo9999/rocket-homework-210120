@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
+
 import HotelListDisplay from "../HotelList/HotelList";
 import FilterPanel from "../FilterPanel/FilterPanel";
+import ErrorDisplay from "../ErrorDisplay/ErrorDisplay";
 import Aux from "../HOC/Aux";
+
 import "./App.style.scss";
 
 import hotelResultService from "../../services/hotel-result/hotel-result.service";
-import ErrorDisplay from "../ErrorDisplay/ErrorDisplay";
 
 const App = () => {
   const [hotels, setHotels] = useState([]);
