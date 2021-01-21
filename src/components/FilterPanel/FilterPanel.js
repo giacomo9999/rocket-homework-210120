@@ -3,7 +3,7 @@ import "./FilterPanel.style.scss";
 
 const FilterPanel = (props) => {
   const onInputChange = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     props.handleSetSearchAndSortParams(e.target.name, e.target.value);
   };
 
@@ -34,7 +34,7 @@ const FilterPanel = (props) => {
         <option value="low-to-high">Price low-to-high</option>
         <option value="high-to-low">Price high-to-low</option>
       </select>
-      <button className="button" onClick={() => onReset()}>
+      <button className="button" name="reset" onClick={() => onReset()}>
         Reset Search Params
       </button>
     </div>
