@@ -6,7 +6,8 @@ const FilterPanel = (props) => {
     props.handleSetSearchAndSortParams(e.target.name, e.target.value);
   };
 
-  const onReset = () => {
+  const onReset = (e) => {
+    e.preventDefault();
     props.handleSetSearchAndSortParams("searchTerm", "");
     props.handleSetSearchAndSortParams("sortMethod", "recommended");
   };
@@ -35,7 +36,7 @@ const FilterPanel = (props) => {
           <option value="low-to-high">Price low-to-high</option>
           <option value="high-to-low">Price high-to-low</option>
         </select>
-        <button className="h-btn" name="reset" onClick={() => onReset()}>
+        <button className="h-btn" name="reset" onClick={(e) => onReset(e)}>
           Reset Search Params
         </button>
       </form>
