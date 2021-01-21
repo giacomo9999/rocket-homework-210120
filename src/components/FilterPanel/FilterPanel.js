@@ -3,7 +3,6 @@ import "./FilterPanel.style.scss";
 
 const FilterPanel = (props) => {
   const onInputChange = (e) => {
-    // e.preventDefault();
     props.handleSetSearchAndSortParams(e.target.name, e.target.value);
   };
 

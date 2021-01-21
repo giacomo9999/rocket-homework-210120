@@ -1,18 +1,14 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 import FilterPanel from "./FilterPanel";
 
-describe("HotelList", () => {
+describe("FilterPanel Tests", () => {
   const setup = (props = {}) => {
     return shallow(<FilterPanel {...props} />);
   };
 
-  const setupMount = (props = {}) => {
-    return shallow(<FilterPanel {...props} />);
-  };
-
   const testProps = {
-    searchTerm: "",
+    searchTerm: "testSearchTerm",
     sortMethod: "recommended",
     handleSetSearchAndSortParams: jest.fn(),
   };
@@ -41,7 +37,7 @@ describe("HotelList", () => {
     const wrapper = setup({
       searchTerm: "wakalixes",
       sortMethod: "ooblegort",
-      handleSetSearchAndSortParams: { testFn },
+      handleSetSearchAndSortParams: jest.fn(),
     });
     expect(wrapper.find('input[name="searchTerm"]').prop("value")).toBe(
       "wakalixes"
@@ -51,29 +47,34 @@ describe("HotelList", () => {
     );
   });
 
+  // The test below isn't working. It almost certainly has something to do with the onChange handler invoking a function passed in as a prop...but after pounding away at the problem for over an hour, I'm not getting a solution and I need to move on.
+
   //   it("on change of value in the field, the state of that field in the component should be updated", () => {
   //     const wrapper = setup(testProps);
+
   //     wrapper.find('input[name="searchTerm"]').simulate("change", {
   //       target: {
-  //         value: "slogblap",
+  //         name: "changedSearchTerm",
   //       },
   //     });
+
   //     expect(wrapper.find('input[name="searchTerm"]').prop("value")).toBe(
-  //       "slogblap"
+  //       "changedSearchTerm"
   //     );
+
   //     wrapper.find('select[name="sortMethod"]').simulate("change", {
   //       target: {
-  //         value: "newSortMethod",
+  //         name: "changedSortMethod",
   //       },
   //     });
   //     expect(wrapper.find('select[name="sortMethod"]').prop("value")).toBe(
-  //       "newSortMethod"
+  //       "changedSortMethod"
   //     );
   //   });
 
   it("clicking 'reset' should trigger a handler function", () => {
     const fn = jest.fn();
-    const wrapper = setupMount({
+    const wrapper = setup({
       searchTerm: "",
       sortMethod: "recommended",
       handleSetSearchAndSortParams: fn,
