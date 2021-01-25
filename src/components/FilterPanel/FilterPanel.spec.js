@@ -81,7 +81,6 @@ describe("FilterPanel Tests", () => {
     );
   });
 
-  //  Jest/Enzyme doesn't seem to be recognizing the mock here:
   it("clicking 'reset' should trigger a handler function", () => {
     const fn = jest.fn();
     const wrapper = setupMount({
