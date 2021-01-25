@@ -1,10 +1,14 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import FilterPanel from "./FilterPanel";
 
 describe("FilterPanel Tests", () => {
   const setup = (props = {}) => {
     return shallow(<FilterPanel {...props} />);
+  };
+
+  const setupMount = (props = {}) => {
+    return mount(<FilterPanel {...props} />);
   };
 
   const testProps = {
@@ -49,33 +53,38 @@ describe("FilterPanel Tests", () => {
 
   // The test below isn't working. It almost certainly has something to do with the onChange handler invoking a function passed in as a prop...but after pounding away at the problem for over an hour, I'm not getting a solution and I need to move on.
 
-  //   it("on change of value in the field, the state of that field in the component should be updated", () => {
-  //     const wrapper = setup(testProps);
+  it("on change of value in the field, the state of that field in the component should be updated", () => {
+    const fn = jest.fn();
+    const wrapper = setupMount({
+      searchTerm: "",
+      sortMethod: "recommended",
+      handleSetSearchAndSortParams: fn,
+    });
 
-  //     wrapper.find('input[name="searchTerm"]').simulate("change", {
-  //       target: {
-  //         name: "changedSearchTerm",
-  //       },
-  //     });
+    wrapper.find('input[name="searchTerm"]').simulate("change", {
+      target: {
+        name: "changedSearchTerm",
+      },
+    });
 
-  //     expect(wrapper.find('input[name="searchTerm"]').prop("value")).toBe(
-  //       "changedSearchTerm"
-  //     );
+    expect(wrapper.find('input[name="searchTerm"]').prop("value")).toBe(
+      "changedSearchTerm"
+    );
 
-  //     wrapper.find('select[name="sortMethod"]').simulate("change", {
-  //       target: {
-  //         name: "changedSortMethod",
-  //       },
-  //     });
-  //     expect(wrapper.find('select[name="sortMethod"]').prop("value")).toBe(
-  //       "changedSortMethod"
-  //     );
-  //   });
+    wrapper.find('select[name="sortMethod"]').simulate("change", {
+      target: {
+        name: "changedSortMethod",
+      },
+    });
+    expect(wrapper.find('select[name="sortMethod"]').prop("value")).toBe(
+      "changedSortMethod"
+    );
+  });
 
-  //  Did this work before? Jest/Enzyme doesn't seem to be recognizing the mock.
+  //  Jest/Enzyme doesn't seem to be recognizing the mock here:
   it("clicking 'reset' should trigger a handler function", () => {
     const fn = jest.fn();
-    const wrapper = setup({
+    const wrapper = setupMount({
       searchTerm: "",
       sortMethod: "recommended",
       handleSetSearchAndSortParams: fn,
